@@ -1,14 +1,17 @@
 // @ts-nocheck
 import {
   BeforeInsert,
+  BeforeUpdate,
   Column,
   CreateDateColumn,
   Entity,
+  ManyToOne,
   PrimaryColumn,
   UpdateDateColumn,
 } from "typeorm";
 import { AssetType } from "../../types/transaction.mjs";
 import { randomUUID } from "crypto";
+import { Wallet } from "./wallet.mjs";
 
 export enum TransactionStatus {
   PENDING = "PENDING",
@@ -52,6 +55,9 @@ export class TransactionEntity {
   })
   status: TransactionStatus;
 
+  @ManyToOne(() => Wallet, { eager: true })
+  wallet: Wallet;
+
   @CreateDateColumn()
   createdAt: Date;
 
@@ -61,5 +67,12 @@ export class TransactionEntity {
   @BeforeInsert()
   preInsert() {
     this.id = randomUUID();
+    this.createdAt = new Date();
+    this.updatedAt = new Date();
+  }
+
+  @BeforeUpdate()
+  preUpdate() {
+    this.updatedAt = new Date();
   }
 }
