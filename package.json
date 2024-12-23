@@ -1,0 +1,26 @@
+{
+  "name": "leadwallet-api",
+  "module": "index.ts",
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.10.1",
+    "tsx": "^4.19.2"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@octokit/core": "^6.1.2",
+    "@sinclair/typebox": "^0.34.9",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "octokit": "^4.0.2",
+    "pg": "^8.13.1",
+    "reflect-metadata": "^0.2.2",
+    "typeorm": "^0.3.20"
+  },
+  "scripts": {
+    "format": "prettier --write ."
+  }
+}
